@@ -27,18 +27,17 @@ app.get('/reserve', function(req, res){
 
 // Handle post request
 app.post("/api/tables", function(req, res) {
-//   var newTable = req.body;
-//   console.log(newTable);
-//   currRes.push(newTable);
-//   res.json(newTable);
-//   console.log(req);
-  	if (currRes.length < 5){
-      currRes.push(req);
-      alert("Congrats! You got a table!");
+
+    console.log(req.body);
+    if (currRes.length < 5){
+      currRes.push(req.body);
+      console.log('Got a table!');
+      res.status(200).send(true);
     }
     else {
-      waitRes.push(req);
-      alert("You have to wait!");
+      waitRes.push(req.body);
+      console.log('On the waitlist :(');
+      res.status(200).send(false);
     }
       
 });
